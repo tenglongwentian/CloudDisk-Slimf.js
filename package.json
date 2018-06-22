@@ -1,0 +1,71 @@
+{
+  "name": "CloudDisk",
+  "main": "main.js",
+  "private": true,
+  "productName": "CloudDisk",
+  "version": "1.0.0",
+  "author": "ZJINH",
+  "description": "Cloud-网盘",
+  "dependencies": {
+    "electron-updater": "^2.21.10",
+    "fs": "0.0.1-security",
+    "regedit": "^3.0.0"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://cloud.com/update"
+      }
+    ],
+    "appId": "CloudDisk",
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "icon": "public\\img\\ico\\app.ico",
+      "artifactName": "${productName}_setup_${version}.${ext}",
+      "target": [
+        "nsis"
+      ]
+    },
+    "asar": true,
+    "nsis": {
+      "oneClick": true,
+      "menuCategory": "Cloud",
+      "shortcutName": "Cloud-网盘",
+      "allowToChangeInstallationDirectory": false,
+      "perMachine": true,
+      "runAfterFinish": true
+    },
+    "mac": {
+      "icon": "public\\img\\ico\\app.icns",
+      "category": "browers",
+      "target": [
+        "dmg"
+      ]
+    },
+    "dmg":{
+      "window":{
+        "x":100,
+        "y":100,
+        "width":500,
+        "height":300
+      }
+    }
+  },
+  "linux":{
+    "icon": "public\\img\\tray\\app.ico",
+    "target":[
+      "AppImage","tar.gz"
+    ]
+  },
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win --ia32",
+    "build:mac": "electron-builder --mac",
+    "build:linux":"electron-builder --platform=linux",
+    "packager": "electron-packager ./ --all --out ./OutApp --version 1.4.0 --overwrite --icon=./public/img/tray/app.ico"
+  },
+  "license": "ZJINH"
+}
