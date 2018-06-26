@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>CloudDisk</title>
     <link href="public/css/Slimf.css" type="text/css" rel="stylesheet"/>
+    <link href="public/css/SlimfEditor.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="public/css/CloudDisk.css">
 </head>
 <body>
@@ -11,13 +12,19 @@
     <div class="CloudDiskHeaderDrag">
         <section class="left"></section>
         <ul class="CloudDiskFuncMenu">
-            <img draggable="false" src="./public/img/bar/disk.png">
+            <img draggable="false" src="./public/img/bar/disk.png"><span>CloudDisk</span>
             <li><p> 网盘</p><div class="CloudDiskFuncLine" style="width:100%;"></div></li>
             <li><p> 分享</p><div class="CloudDiskFuncLine"></div></li>
+            <li><p> 传输</p><div class="CloudDiskFuncLine"></div></li>
         </ul>
         <section class="center"></section>
+        <div class="CloudDiskUser">
+            <span></span>
+            <img draggable="false">
+        </div>
         <section class="right">
             <section class="CloudDiskHeaderControl">
+                <span></span>
                 <button type="button" class="sf-icon-chevron-down" tooltip="系统菜单"></button>
                 <button type="button" class="sf-icon-window-minimize" tooltip="最小化"></button>
                 <button type="button" class="sf-icon-window-maximize" tooltip="最大化"></button>
@@ -57,6 +64,11 @@
                 <li ripple class="CloudDiskClassifyActive"><span></span>我的分享</li>
                 <li ripple><span></span>已失效的</li>
             </ul>
+            <ul class="CloudDiskClassify"style="display: none">
+                <li ripple class="CloudDiskClassifyActive"><span class="sf-icon-download"></span>正在下载</li>
+                <li ripple><span class="sf-icon-upload"></span>正在上传</li>
+                <li ripple><span class="sf-icon-check-circle"></span>传输完成</li>
+            </ul>
             <div class="CloudDiskSelectTips" id="CloudDiskSelectTips"></div>
             <div class="CloudDiskCapacity">
                 <div class="CloudDiskSliderContainer">
@@ -71,13 +83,13 @@
                 <button id="TrashBtn" class="CloudDiskDisable" onclick="CloudDisk.TrashClean(this)">清空回收站</button>
             </div>
             <div class="CloudDiskMainFunc" id="CloudDiskMainFunc">
-                <div class="CloudDiskFuncBlock" state="up" onclick="CloudDisk.FileSort(0,'disk_name')"style="width:calc(55% - 15px)">
+                <div class="CloudDiskFuncBlock" state="up" onclick="CloudDisk.FileSort(0,'disk_name')" ripple style="width:calc(55% - 15px)">
                     文件名
                 </div>
-                <div class="CloudDiskFuncBlock" state="up" onclick="CloudDisk.FileSort(1,'create_time')">
+                <div class="CloudDiskFuncBlock" state="up" onclick="CloudDisk.FileSort(1,'create_time')" ripple>
                     修改日期
                 </div>
-                <div class="CloudDiskFuncBlock" state="up" onclick="CloudDisk.FileSort(2,'disk_size')">
+                <div class="CloudDiskFuncBlock" state="up" onclick="CloudDisk.FileSort(2,'disk_size')" ripple>
                     大小
                 </div>
             </div>
@@ -86,6 +98,13 @@
             </div>
         </div>
     </div>
+    <ul class="SlimfMouseMenu">
+        <li onclick="CloudDisk.MouseMenu.upload();">我的账户</li>
+        <li onclick="CloudDisk.MouseMenu.CreateFolder()">系统设置</li>
+        <li class="CloudDiskDisable" onclick="CloudDisk.MouseMenu.paste(this)">关于</li>
+        <li onclick="CloudDisk.MouseMenu.refues()">切换账户</li>
+        <li onclick="CloudDisk.MouseMenu.refues()">退出</li>
+    </ul>
     <ul class="SlimfMouseMenu" id="CloudDiskMouseMenu">
         <li onclick="CloudDisk.MouseMenu.upload();">上传文件</li>
         <li onclick="CloudDisk.MouseMenu.CreateFolder()">新建文件夹</li>
@@ -118,6 +137,7 @@
 </div>
 </body>
 <script src="public/js/Slimf.js" type="text/javascript"></script>
+<script src="public/js/SlimfEditor.js" type="text/javascript"></script>
 <script src="public/js/client.js" type="text/javascript"></script>
 <script src="public/js/CloudDisk.js"></script>
 </html>

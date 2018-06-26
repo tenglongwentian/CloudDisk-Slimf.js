@@ -112,6 +112,19 @@ CloudDisk.Start = function () {
         }
         CloudDisk.All.onkeyup = function () {
             CloudDisk.KeyFlag = null;
+        };
+        var evt = (e) ? e : window.event;
+        if(evt.keyCode===112 ){
+            CloudDisk.about();
+        }else if(evt.keyCode===114||((evt.ctrlKey)&&(evt.keyCode===70))||((evt.ctrlKey)&&(evt.keyCode===71))) {//查找
+            CloudDisk.SearchBtn.click();
+        }else if(evt.keyCode===116){//重新加载、刷新
+            CloudDisk.CloudDiskMainInfo( CloudDisk.NowID,CloudDisk.NowType)
+        }else if((evt.ctrlKey)&&(evt.keyCode===84)){//打开一个新标签页
+            US_Browser.CreatBrower(null);
+        }else if((evt.ctrlKey)&&(evt.keyCode===78)){//新建文件夹
+            CloudDisk.MouseMenu(CloudDisk.NowID);
+            CloudDisk.MouseMenu.CreateFolder()
         }
     };//处理全局键盘事件
     //以上是移入的
@@ -122,21 +135,58 @@ CloudDisk.Start = function () {
     for (var i = 0; i < CloudDisk.FuncButton.length; i++) {
         (function (i) {
             CloudDisk.FuncButton[i].onclick = function () {
-                CloudDisk.ChangeFunc(i)
+                for (var j = 0; j < CloudDisk.FuncButton.length; j++) {
+                    CloudDisk.FuncContainer[j].style.display = 'none';
+                    CloudDisk.FuncButton[j].getElementsByTagName('div')[0].style.width = '0';
+                }
+                CloudDisk.FuncContainer[i].style.display = 'block';
+                CloudDisk.FuncButton[i].getElementsByTagName('div')[0].style.width = '100%';
+                if(i===0){
+                    CloudDisk.SearchBtn.className = 'sf-icon-search';
+                    CloudDisk.Classify[0].click();
+                }else if (i=== 1) {
+                    CloudDisk.CloudDiskNavBar.innerHTML = '';
+                    CloudDisk.ShareClass[0].click();
+                    CloudDisk.SearchBtn.className = 'sf-icon-search CloudDiskDisable';
+                } else if(i===2) {
+                    CloudDisk.AddresButton[1].innerHTML = '传输列表';
+                    CloudDisk.CloudDiskNavBar.innerHTML = '';
+                    CloudDisk.SearchBtn.className = 'sf-icon-search CloudDiskDisable';
+                }
             }
         })(i)
     }
     for (var j = 0; j < CloudDisk.Classify.length; j++) {
         (function (j) {
             CloudDisk.Classify[j].onclick = function () {
-                CloudDisk.ChangeClassfily(j)
+                for (var i = 0; i < CloudDisk.Classify.length; i++) {
+                    CloudDisk.Classify[i].className = '';
+                }
+                CloudDisk.Classify[j].className = 'CloudDiskClassifyActive';
+                if (j === CloudDisk.Classify.length - 1) {
+                    CloudDisk.TrashFunc.style.display = 'block';
+                } else {
+                    CloudDisk.TrashFunc.style.display = 'none';
+                }
+                CloudDisk.AddresButton[1].innerHTML = CloudDisk.Classify[j].innerText;
+                CloudDisk.AddresButton[1].click();
+                CloudDisk.SelectTips.innerHTML = '';
             }
         })(j)
     }
     for (var k = 0; k < CloudDisk.ShareClass.length; k++) {
         (function (k) {
             CloudDisk.ShareClass[k].onclick = function () {
-                CloudDisk.ChangeShareClassify(k)
+                for (var i = 0; i < CloudDisk.ShareClass.length; i++) {
+                    CloudDisk.ShareClass[i].className = '';
+                }
+                CloudDisk.ShareClass[k].className = 'CloudDiskClassifyActive';
+                if (k === 0) {
+                    CloudDisk.CloudDiskMainInfo(null, 'share');
+                    CloudDisk.AddresButton[1].innerHTML = '我的分享';
+                } else {
+                    CloudDisk.CloudDiskMainInfo(null, 'disshare');
+                }
             }
         })(k)
     }
@@ -166,49 +216,18 @@ CloudDisk.Start = function () {
 
         }
     })
+    CloudMain.Ajax({
+        url:"/service/user/UserInfo",
+        success:function (rs) {
+            rs=rs[0];
+            $(".CloudDiskUser img")[0].src=CloudMain.ServerUrl+'/'+rs.userhead;
+            $(".CloudDiskUser span")[0].innerHTML=rs.username;
+        }
+    })
 };//网盘加载入口
-CloudDisk.ChangeFunc = function (a) {
-    for (var i = 0; i < CloudDisk.FuncButton.length; i++) {
-        CloudDisk.FuncContainer[i].style.display = 'none';
-        CloudDisk.FuncButton[i].getElementsByTagName('div')[0].style.width = '0';
-    }
-    CloudDisk.FuncContainer[a].style.display = 'block';
-    CloudDisk.FuncButton[a].getElementsByTagName('div')[0].style.width = '100%';
-    if (a === 1) {
-        CloudDisk.CloudDiskNavBar.innerHTML = '';
-        CloudDisk.ShareClass[0].click();
-        CloudDisk.SearchBtn.className = 'sf-icon-search CloudDiskDisable';
-    } else {
-        CloudDisk.SearchBtn.className = 'sf-icon-search';
-        CloudDisk.Classify[0].click();
-    }
-};//网盘分享切换
-CloudDisk.ChangeClassfily = function (a) {
-    for (var i = 0; i < CloudDisk.Classify.length; i++) {
-        CloudDisk.Classify[i].className = '';
-    }
-    CloudDisk.Classify[a].className = 'CloudDiskClassifyActive';
-    if (a === CloudDisk.Classify.length - 1) {
-        CloudDisk.TrashFunc.style.display = 'block';
-    } else {
-        CloudDisk.TrashFunc.style.display = 'none';
-    }
-    CloudDisk.AddresButton[1].innerHTML = CloudDisk.Classify[a].innerText;
-    CloudDisk.AddresButton[1].click();
-    CloudDisk.SelectTips.innerHTML = '';
-};//网盘分类切换
-CloudDisk.ChangeShareClassify = function (a) {
-    for (var i = 0; i < CloudDisk.ShareClass.length; i++) {
-        CloudDisk.ShareClass[i].className = '';
-    }
-    CloudDisk.ShareClass[a].className = 'CloudDiskClassifyActive';
-    if (a === 0) {
-        CloudDisk.CloudDiskMainInfo(null, 'share');
-        CloudDisk.AddresButton[1].innerHTML = '我的分享';
-    } else {
-        CloudDisk.CloudDiskMainInfo(null, 'disshare');
-    }
-};//网盘分享类别切换
+CloudDisk.about=function(){
+
+};
 CloudDisk.GetDiskTreeInfo = function (id, thisFolder) {
     var createnode;
     if (!thisFolder) {
@@ -319,6 +338,7 @@ CloudDisk.PrintDiskMain = function (file_name, disk_id, disk_type, real_name, fi
     var a = $.CreateElement({
         tag: "div",
         className: viewMode,
+        attr:{"ripple":""},
         node: CloudDisk.CloudDiskMain
     });
     if (type !== 'trash') {
@@ -1054,7 +1074,7 @@ CloudDisk.MouseMenuFile = function (thisFolder) {
         });
     };
     CloudDisk.MouseMenuFile.share = function () {
-        if (CloudDisk.DownLoadButton.className=== 'CloudDiskDisable'||CloudDisk.SelectFiles.length>1) {
+        if (CloudDisk.SelectFiles.length>1) {
             return false;
         }
         CloudDisk.ShareChangeType = function () {
@@ -1137,7 +1157,7 @@ CloudDisk.MouseMenuFile = function (thisFolder) {
                         copy = '<button onclick="CloudDisk.CopyAddres()">复制链接及密码</button>';
                     }
                     thisFolder.data.share=rs[0].addres;
-                    var content = '分享链接已生成，复制给好友吧<br>链接：<input spellcheck="false"  type="text" style="width: 273px" value=http://' + window.location.host + '/s/' + rs[0].addres + '><br>' + pass + copy;
+                    var content = '分享链接已生成，复制给好友吧<br>链接：<input spellcheck="false"  type="text" style="width: 273px" value='+CloudMain.ServerUrl + '/s/' + rs[0].addres + '><br>' + pass + copy;
                     $.Confirm({
                         id: 'CloudDiskConfrim',
                         node: CloudDisk.All,

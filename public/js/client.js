@@ -2,7 +2,6 @@ const {ipcRenderer} = require('electron');
 let ipc=require('electron').ipcRenderer;
 CloudMain=$.NameSpace.register('CloudMain');
 CloudMain.ServerUrl='http://cloud.com:100';
-CloudMain.socketUrl='ws://10.3.16.32:9090';
 CloudMain.UpdateServerUrl=function (a,url) {
     var testUrl=url?url:CloudMain.ServerUrl;
     $.Ajax({
@@ -19,9 +18,6 @@ CloudMain.UpdateServerUrl=function (a,url) {
             $.Toast('地址更新失败')
         }
     });
-};
-CloudMain.UpdatesocketUrl=function (url) {
-    CloudMain.socketUrl=url
 };
 CloudMain.Ajax=function (options) {
     var param = {

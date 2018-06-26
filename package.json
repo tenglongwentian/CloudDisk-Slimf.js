@@ -31,10 +31,10 @@
     },
     "asar": true,
     "nsis": {
-      "oneClick": true,
+      "oneClick": false,
       "menuCategory": "Cloud",
       "shortcutName": "Cloud-网盘",
-      "allowToChangeInstallationDirectory": false,
+      "allowToChangeInstallationDirectory": true,
       "perMachine": true,
       "runAfterFinish": true
     },

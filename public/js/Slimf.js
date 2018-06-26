@@ -767,8 +767,8 @@
                                     }
                                     if(finish_count){
                                         $.Toast('共选择 '+tfl.length+' 个文件<br>'+finish_count+' 个文件上传成功');
-                                        error_count?$.Toast(error_count+' 个文件上传失败'):"";
                                     }
+                                    error_count?$.Toast(error_count+' 个文件上传失败'):"";
                                     $.Window.Close(a.parentNode);
                                     callback&&callback(rs);
                                 },
@@ -940,7 +940,7 @@
                                 iT = node.clientHeight - handle.offsetHeight;
                             }
                             oDrag.style.left = iL + "px";
-                            oDrag.style.top = iT + "px";
+                            oDrag.style.top = iT<70?80:iT + "px";
                             return false
                         }
                     };
@@ -1907,7 +1907,7 @@
                         }
                     };
                     btnArr[3].onclick=function () {
-                        Nowplay !== b1.childNodes.length - 1 ? b1.childNodes[Nowplay + 1].click() : btnArr[2].className='sf-icon-play SlimfABtnbig';
+                        Nowplay !== b1.childNodes.length - 1 ? b1.childNodes[Nowplay + 1].click() : '';
                     };
                     btnArr[4].onclick=function () {
                         k1.offsetHeight?k1.style.display='none':k1.style.display='block';
