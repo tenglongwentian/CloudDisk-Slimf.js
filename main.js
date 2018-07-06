@@ -118,7 +118,6 @@ function CreatDiskWindow() {
     DiskWindow.on('unmaximize',function () {
         DiskWindow.webContents.send('size', -1);
     });
-
 }
 function CreateDiskSetting() {
     SettingWindow = new BrowserWindow({
