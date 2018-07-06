@@ -2353,12 +2353,20 @@
       <workItem from="1529981379756" duration="6102000" />
       <workItem from="1530011846332" duration="13658000" />
       <workItem from="1530493452657" duration="4338000" />
+<<<<<<< HEAD
       <workItem from="1530757349907" duration="8475000" />
+=======
+      <workItem from="1530757349907" duration="8388000" />
+>>>>>>> 3628f92b2f6b83644dc0ed6ef34041c98fa6364d
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="5547400000" />
+=======
+    <option name="totallyTimeSpent" value="5547313000" />
+>>>>>>> 3628f92b2f6b83644dc0ed6ef34041c98fa6364d
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
