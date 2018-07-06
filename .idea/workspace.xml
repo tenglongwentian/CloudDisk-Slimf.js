@@ -49,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CloudDisk.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CloudDisk.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/CloudDisk.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="115">
@@ -449,11 +449,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="46">
+                <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Slimf.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/Slimf.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="460">
-              <caret line="472" column="10" lean-forward="true" selection-start-line="431" selection-start-column="8" selection-end-line="472" selection-end-column="10" />
+              <caret line="472" column="10" selection-start-line="431" selection-start-column="8" selection-end-line="472" selection-end-column="10" />
               <folding>
                 <element signature="e#54#104#0" />
                 <element signature="e#119#203#0" />
@@ -1711,7 +1723,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/css/1.css" />
         <option value="$PROJECT_DIR$/index1.css" />
         <option value="$PROJECT_DIR$/2.html" />
         <option value="F:/下载/front-end-daily-challenges-master/003-diagonal-stripe-border-effects/style.css" />
@@ -1762,6 +1773,7 @@
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/public/js/login.js" />
         <option value="$PROJECT_DIR$/public/js/CloudDisk.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -2336,12 +2348,12 @@
       <workItem from="1529981379756" duration="6102000" />
       <workItem from="1530011846332" duration="13658000" />
       <workItem from="1530493452657" duration="4338000" />
-      <workItem from="1530757349907" duration="7885000" />
+      <workItem from="1530757349907" duration="8388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5546810000" />
+    <option name="totallyTimeSpent" value="5547313000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2439,7 +2451,6 @@
     </find-history>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/service/Controller/GalleryController.php" />
     <entry file="file://$PROJECT_DIR$/service/Controller/MusicController.php" />
     <entry file="file://$PROJECT_DIR$/public/js/CloudChat.js" />
     <entry file="file://$PROJECT_DIR$/public/js/1.js" />
@@ -2938,7 +2949,7 @@
     <entry file="file://$PROJECT_DIR$/public/js/Slimf.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
-          <caret line="472" column="10" lean-forward="true" selection-start-line="431" selection-start-column="8" selection-end-line="472" selection-end-column="10" />
+          <caret line="472" column="10" selection-start-line="431" selection-start-column="8" selection-end-line="472" selection-end-column="10" />
           <folding>
             <element signature="e#54#104#0" />
             <element signature="e#119#203#0" />
@@ -4115,6 +4126,16 @@
             <element signature="e#55242#55387#0" />
             <element signature="e#55428#55507#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="46">
+            <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
